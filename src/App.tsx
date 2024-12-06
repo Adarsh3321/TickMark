@@ -33,13 +33,13 @@ function App() {
                   asChild
                 >
                   <a
-                    href="https://github.com/Manish-Let-It-Be"
+                    href="https://github.com/Adarsh3321"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-sm sm:text-base"
                   >
                     <Github className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:rotate-12" />
-                    <span>Created by Manish</span>
+                    <span>GODRIC</span>
                   </a>
                 </Button>
               </Tooltip>
