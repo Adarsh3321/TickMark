@@ -29,7 +29,8 @@ export function TodoList() {
           id: Date.now(), 
           text: input.trim(), 
           status: "pending",
-          createdAt: new Date()
+          createdAt: new Date(),
+          totalTimeMs: 0
         },
       ]);
       setInput("");
@@ -45,11 +46,26 @@ export function TodoList() {
   const updateTodoStatus = (id: number, status: Todo["status"]) => {
     setTodos(todos.map((todo) => {
       if (todo.id === id) {
-        if (status === "working" && todo.status !== "working") {
-          return { ...todo, status, startedAt: new Date() };
+        if (status === "working") {
+          const now = new Date();
+          if (todo.status === "working") {
+            return todo; // No change if already working
+          }
+          return { 
+            ...todo, 
+            status, 
+            startedAt: now,
+          };
         }
-        if (status === "completed" && todo.status === "working") {
-          return { ...todo, status, completedAt: new Date() };
+        if (status === "completed" && todo.status === "working" && todo.startedAt) {
+          const now = new Date();
+          const currentSession = now.getTime() - todo.startedAt.getTime();
+          return { 
+            ...todo, 
+            status, 
+            completedAt: now,
+            totalTimeMs: todo.totalTimeMs + currentSession
+          };
         }
         return { ...todo, status };
       }
@@ -98,10 +114,13 @@ export function TodoList() {
   return (
     <div className="w-full max-w-md mx-auto space-y-4">
       <div className="text-center mb-6">
-        <h2 className="text-xl font-semibold">
-          {format(new Date(), 'EEEE, MMMM d, yyyy')}
+        <h2 className="text-3xl font-['Dancing_Script'] font-bold mb-2 animate-pulse bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">
+          {format(new Date(), 'EEEE')}
         </h2>
-        <p className="text-sm text-muted-foreground">
+        <h3 className="text-xl font-['Dancing_Script'] animate-pulse bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">
+          {format(new Date(), 'MMMM d, yyyy')}
+        </h3>
+        <p className="text-sm text-muted-foreground mt-2">
           {completedTasks} of {totalTasks} tasks completed
         </p>
       </div>

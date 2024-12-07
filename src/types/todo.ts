@@ -5,4 +5,5 @@ export type Todo = {
   createdAt: Date;
   startedAt?: Date;
   completedAt?: Date;
+  totalTimeMs: number;
 };

@@ -1,4 +1,4 @@
-import { Check, Loader2, Trash2, GripVertical } from "lucide-react";
+import { Check, Loader2, Trash2, GripVertical, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tooltip } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
@@ -28,14 +28,10 @@ export function TodoItem({ todo, updateTodoStatus, removeTodo }: TodoItemProps) 
     transition,
   };
 
-  const getElapsedTime = () => {
-    if (todo.startedAt && todo.completedAt) {
-      const elapsed = todo.completedAt.getTime() - todo.startedAt.getTime();
-      const minutes = Math.floor(elapsed / 60000);
-      const seconds = Math.floor((elapsed % 60000) / 1000);
-      return `${minutes}m ${seconds}s`;
-    }
-    return '';
+  const formatElapsedTime = (ms: number) => {
+    const minutes = Math.floor(ms / 60000);
+    const seconds = Math.floor((ms % 60000) / 1000);
+    return `${minutes}m ${seconds}s`;
   };
 
   return (
@@ -58,14 +54,23 @@ export function TodoItem({ todo, updateTodoStatus, removeTodo }: TodoItemProps) 
           </span>
           <span className="text-xs text-muted-foreground">
             Created: {format(todo.createdAt, 'MMM d, yyyy HH:mm')}
-            {todo.completedAt && ` • Time taken: ${getElapsedTime()}`}
           </span>
         </div>
       </div>
       <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
         {todo.status === "working" && todo.startedAt && (
-          <div className="px-2 py-1 bg-blue-100 dark:bg-blue-900 rounded text-blue-700 dark:text-blue-300">
-            <Timer startTime={todo.startedAt} isRunning={true} />
+          <Timer 
+            startTime={todo.startedAt} 
+            isRunning={true} 
+            previousTime={todo.totalTimeMs}
+          />
+        )}
+        {todo.status === "completed" && todo.totalTimeMs > 0 && (
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-green-100 dark:bg-green-900 rounded-md">
+            <Clock className="w-3 h-3 text-green-600 dark:text-green-300" />
+            <span className="text-sm font-mono text-green-700 dark:text-green-200">
+              {formatElapsedTime(todo.totalTimeMs)}
+            </span>
           </div>
         )}
         <Tooltip content="Mark as working">
