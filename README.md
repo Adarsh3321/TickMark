@@ -1,6 +1,6 @@
-# [Lets-Do-It](https://taskhandle.netlify.app/)
+# [TickMARK](https://tickmark.netlify.app/)
 
-Welcome to **Let's Do It**, a simple yet powerful To-Do List program that helps you manage your tasks efficiently. With this application, you can create, manage, and export your daily tasks seamlessly.
+Welcome to **TickMark**, a simple yet powerful To-Do List program that helps you manage your tasks efficiently. With this application, you can create, manage, and export your daily tasks seamlessly.
 
 ## Features
 
@@ -13,11 +13,11 @@ Welcome to **Let's Do It**, a simple yet powerful To-Do List program that helps 
 
 ## Screenshots
 
-<a href="https://taskhandlerr.vercel.app/">
+<a href="https://tick-mark.vercel.app/">
     <img src="Light_UI.png" alt="Light Mode" height="350">
 </a>
 
-<a href="https://taskhandlerr.vercel.app/">
+<a href="https://tick-mark.vercel.app/">
     <img src="Dark_UI.png" alt="Light Mode" height="350">
 </a>
 
@@ -28,8 +28,8 @@ Welcome to **Let's Do It**, a simple yet powerful To-Do List program that helps 
 
 You can try out the application on the following platforms:
 
-- [Netlify](https://taskhandle.netlify.app/)
-- [Vercel](https://taskhandlerr.vercel.app/)
+- [Netlify](https://tickmark.netlify.app/)
+- [Vercel](https://tick-mark.vercel.app/)
 
 ## Getting Started
 
@@ -37,11 +37,11 @@ To get a local copy up and running, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Manish-Let-It-Be/Lets-Do-It.git
+   git clone https://github.com/Adarsh3321/TickMark.git
    ```
 2. Navigate to the project directory:
    ```bash
-   cd lets-do-it
+   cd TickMark
    ```
 3. Install the dependencies:
    ```bash
